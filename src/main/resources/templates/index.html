@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dropdown Example</title>
+</head>
+<body>
+    <h1>Select a Report</h1>
+    <form action="#" th:action="@{/submit}" method="post">
+        <select name="selectedReport" required>
+            <option th:each="report : ${reports}" th:value="${report.scriptname}" th:text="${report.rname}"></option>
+        </select>
+        <button type="submit">Generate Report</button>
+    </form>
+</body>
+</html>
