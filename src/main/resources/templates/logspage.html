@@ -1,0 +1,33 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Auto Refresh Data Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function refreshDiv() {
+            $.ajax({
+                url: '/fetch-data',
+                method: 'GET',
+                success: function(data) {
+                    $('#dataContainer').empty(); // Clear previous data
+                    data.forEach(function(item) {
+                        $('#dataContainer').append('<p>' + item.content + '</p>'); // Append new data
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            setInterval(refreshDiv, 5000); // Refresh every 5 seconds
+            refreshDiv(); // Initial call to populate the data immediately
+        });
+    </script>
+</head>
+<body>
+    <h1>Data from Database</h1>
+    <div id="dataContainer">
+        <p th:each="item : ${content}" th:text="${item.processname}"></p>
+    </div>
+</body>
+</html>
+ -->

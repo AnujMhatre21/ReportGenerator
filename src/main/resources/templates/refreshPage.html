@@ -1,0 +1,51 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Items</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Items</h1>
+
+    <form th:action="@{/submit}" method="get">
+        <select name="itemName" required>
+            <option value="">Select an item</option>
+            <option th:each="item : ${items}" th:value="${item.numid}" th:text="${item.processname}"></option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Item List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="itemTable">
+            <tr th:each="item : ${items}">
+                <td th:text="${item.numid}"></td>
+                <td th:text="${item.processname}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="refreshBtn">Refresh</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#refreshBtn').click(function() {
+                $.ajax({
+                    url: '/items',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#itemTable').html($(data).find('#itemTable').html());
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+ -->

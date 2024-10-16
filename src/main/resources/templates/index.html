@@ -1,15 +1,116 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dropdown Example</title>
+<title>Dropdown Example</title>
+<script>
+	function refreshData() {
+		window.location.reload();
+	}
+</script>
+<style>
+body, html {
+	height: 100%; /* Full height */
+	margin: 0; /* Remove default margin */
+	display: flex; /* Use flexbox */
+	justify-content: center; /* Center horizontally */
+	align-items: center; /* Center vertically */
+	background-color: #f4f4f4; /* Optional background color */
+}
+
+.form-container {
+	width: 400px; /* Set a fixed width or use a percentage */
+	height: 600px;
+	padding: 20px; /* Space inside the form */
+	border: 1px solid #ccc; /* Optional border */
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional shadow */
+	text-align: center; /* Center text inside the form */
+	background-color: white; /* Background color for the form */
+	border-radius: 8px;
+	padding: 20px; /* Rounded corners */
+}
+
+/* Optional styling for the form elements */
+table, select, input[type="submit"] {
+	width: 100%; /* Full width */
+	padding: 10px;
+	margin: 5px 0; /* Space between elements */
+	border: 1px solid #ccc;
+	border-radius: 4px; /* Rounded corners */
+}
+
+button[type="submit"] {
+	font-size: 20px
+}
+
+button[type="submit"]:hover {
+	background-color: #45a049; /* Darker green on hover */
+}
+</style>
 </head>
 <body>
-    <h1>Select a Report</h1>
-    <form action="#" th:action="@{/submit}" method="post">
-        <select name="selectedReport" required>
-            <option th:each="report : ${reports}" th:value="${report.scriptname}" th:text="${report.rname}"></option>
+	<div class="form-container">
+		<h1>Select a Report</h1>
+
+		 <form id="itemForm" action="/submit" method="get">
+        <select id="itemSelect" name="itemName" required>
+            <option value="">Select an item</option>
+            <option th:each="item : ${items}" th:value="${item.processname}" th:text="${item.status}"></option>
         </select>
-        <button type="submit">Generate Report</button>
+        <button type="submit">Submit</button>
     </form>
+
+		<h2>Item List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="itemTable">
+            <tr th:each="item : ${items}">
+                <td th:text="${item.processname}"></td>
+                <td th:text="${item.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="refreshBtn">Refresh</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#itemForm').submit(function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const selectedItem = $('#itemSelect').val();
+                if (selectedItem) {
+                    // Show a popup notification
+                    alert('You selected: ' + selectedItem);
+                }
+
+                // Submit the form via AJAX
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'GET',
+                    data: $(this).serialize(),
+                    success: function() {
+                        // Optionally refresh the table after submission
+                        $('#refreshBtn').click();
+                    }
+                });
+            });
+
+            $('#refreshBtn').click(function() {
+                $.ajax({
+                    url: '/items',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#itemTable').html($(data).find('#itemTable').html());
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
+ -->

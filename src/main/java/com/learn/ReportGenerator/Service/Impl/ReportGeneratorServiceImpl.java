@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.learn.ReportGenerator.Entity.ReportDropDown;
+import com.learn.ReportGenerator.Entity.StatusTable;
 import com.learn.ReportGenerator.Repository.ReportGeneratorRepository;
+import com.learn.ReportGenerator.Repository.StatusTableRepository;
 import com.learn.ReportGenerator.Service.ReportGeneratorService;
 
 @Service
@@ -20,6 +22,9 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
 
 	@Autowired
 	ReportGeneratorRepository generatorRepository;
+
+	@Autowired
+	StatusTableRepository statusTableRepository;
 
 	@Override
 	public List<ReportDropDown> getAllReport() {
@@ -67,5 +72,11 @@ public class ReportGeneratorServiceImpl implements ReportGeneratorService {
 		}
 		return new ResponseEntity<String>(HttpStatus.OK);
 
+	}
+
+	@Override
+	public List<StatusTable> getAlllogs() {
+		// TODO Auto-generated method stub
+		return statusTableRepository.findAll();
 	}
 }
